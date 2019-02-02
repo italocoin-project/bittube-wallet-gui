@@ -1,5 +1,5 @@
 #!/bin/bash
-BITTUBE_URL=https://github.com/ipbc-dev/bittube.git
+BITTUBE_URL=https://github.com/bittube-project/bittube.git
 BITTUBE_BRANCH=master
 
 pushd $(pwd)
@@ -19,33 +19,33 @@ git submodule update --remote
 git -C $BITTUBE_DIR fetch
 git -C $BITTUBE_DIR checkout origin/master
 
-# get monero core tag
+# get bittube core tag
 pushd $BITTUBE_DIR
 get_tag
 popd
-# create local monero branch
+# create local bittube branch
 git -C $BITTUBE_DIR checkout -B $VERSIONTAG
 
-# Merge monero PR dependencies
+# Merge bittube PR dependencies
 
 # Workaround for git username requirements
 # Save current user settings and revert back when we are done with merging PR's
-# OLD_GIT_USER=$(git -C $BITTUBE_DIR config --local user.name)
-# OLD_GIT_EMAIL=$(git -C $BITTUBE_DIR config --local user.email)
-# git -C $BITTUBE_DIR config user.name "Bittube GUI"
-# git -C $BITTUBE_DIR config user.email "gui@bittube.local"
-# # check for PR requirements in most recent commit message (i.e requires #xxxx)
-# for PR in $(git log --format=%B -n 1 | grep -io "requires #[0-9]*" | sed 's/[^0-9]*//g'); do
-#     echo "Merging bittube push request #$PR"
-#     # fetch pull request and merge
-#     git -C $BITTUBE_DIR fetch origin pull/$PR/head:PR-$PR
-#     git -C $BITTUBE_DIR merge --quiet PR-$PR  -m "Merge bittube PR #$PR"
-#     BUILD_LIBWALLET=true
-# done
+OLD_GIT_USER=$(git -C $BITTUBE_DIR config --local user.name)
+OLD_GIT_EMAIL=$(git -C $BITTUBE_DIR config --local user.email)
+git -C $BITTUBE_DIR config user.name "Bittube GUI"
+git -C $BITTUBE_DIR config user.email "gui@bittube.local"
+# check for PR requirements in most recent commit message (i.e requires #xxxx)
+for PR in $(git log --format=%B -n 1 | grep -io "requires #[0-9]*" | sed 's/[^0-9]*//g'); do
+    echo "Merging bittube push request #$PR"
+    # fetch pull request and merge
+    git -C $BITTUBE_DIR fetch origin pull/$PR/head:PR-$PR
+    git -C $BITTUBE_DIR merge --quiet PR-$PR  -m "Merge bittube PR #$PR"
+    BUILD_LIBWALLET=true
+done
 
 # revert back to old git config
-# $(git -C $BITTUBE_DIR config user.name "$OLD_GIT_USER")
-# $(git -C $BITTUBE_DIR config user.email "$OLD_GIT_EMAIL")
+$(git -C $BITTUBE_DIR config user.name "$OLD_GIT_USER")
+$(git -C $BITTUBE_DIR config user.email "$OLD_GIT_EMAIL")
 
 git -C $BITTUBE_DIR submodule init
 git -C $BITTUBE_DIR submodule update
@@ -124,12 +124,11 @@ else
 fi
 
 
-echo "cleaning up existing bittube build dir, libs and includes"
+echo "cleaning up existing monero build dir, libs and includes"
 rm -fr $BITTUBE_DIR/build
 rm -fr $BITTUBE_DIR/lib
 rm -fr $BITTUBE_DIR/include
 rm -fr $BITTUBE_DIR/bin
-
 
 mkdir -p $BITTUBE_DIR/build/$BUILD_TYPE
 pushd $BITTUBE_DIR/build/$BUILD_TYPE
@@ -220,16 +219,16 @@ fi
 # Build libwallet_merged
 pushd $BITTUBE_DIR/build/$BUILD_TYPE/src/wallet
 eval $make_exec version -C ../..
-eval $make_exec  -j$CPU_CORE_COUNT
-eval $make_exec  install -j$CPU_CORE_COUNT
+eval $make_exec  -j3
+eval $make_exec  install -j3
 popd
 
 # Build bittubed
 # win32 need to build daemon manually with msys2 toolchain
 if [ "$platform" != "mingw32" ] && [ "$ANDROID" != true ]; then
     pushd $BITTUBE_DIR/build/$BUILD_TYPE/src/daemon
-    eval make  -j$CPU_CORE_COUNT
-    eval make install -j$CPU_CORE_COUNT
+    eval make  -j3
+    eval make install -j3
     popd
 fi
 
@@ -247,8 +246,8 @@ if [ -d $BITTUBE_DIR/build/$BUILD_TYPE/external/unbound ]; then
     echo "Installing libunbound..."
     pushd $BITTUBE_DIR/build/$BUILD_TYPE/external/unbound
     # no need to make, it was already built as dependency for libwallet
-    # make -j$CPU_CORE_COUNT
-    $make_exec install -j$CPU_CORE_COUNT
+    # make -j3
+    $make_exec install -j3
     popd
 fi
 

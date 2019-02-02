@@ -67,7 +67,7 @@ ROOT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BITTUBE_DIR=bittube
 BITTUBED_EXEC=bittubed
 
-MAKE='make'
+MAKE='make -j3'
 if [[ $platform == *bsd* ]]; then
     MAKE='gmake'
 fi

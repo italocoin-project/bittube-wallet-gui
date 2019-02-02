@@ -348,4 +348,5 @@ Rectangle {
             walletManager.killMiner();
         }
     }
+  }
 }
