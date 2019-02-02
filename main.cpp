@@ -36,6 +36,8 @@
 #include <QObject>
 #include <QDesktopWidget>
 #include <QScreen>
+#include <QRegExp>
+#include <QThread>
 #include "clipboardAdapter.h"
 #include "filter.h"
 #include "oscursor.h"
@@ -54,6 +56,8 @@
 #include "model/AddressBookModel.h"
 #include "Subaddress.h"
 #include "model/SubaddressModel.h"
+#include "SubaddressAccount.h"
+#include "model/SubaddressAccountModel.h"
 #include "wallet/api/wallet2_api.h"
 #include "Logger.h"
 #include "MainApp.h"
@@ -109,29 +113,9 @@ int main(int argc, char *argv[])
 
     MainApp app(argc, argv);
 
-    //test------ FIXME: delete this ----
-    //HttpService http_serv();
-    //http_serv.test();
-    //http_serv.sendPingRequest();
-    //http_serv.sendInfoRequest();
-    // http_serv.sendStatsRequest();
-
-    //QProcess *process = new QProcess();
-    //std::cout << "homePath: " << QDir::homePath().toStdString() << std::endl;
-    //std::cout << "currentPath: " << QDir::currentPath().toStdString() << std::endl;
-
-    // C:/Users/Anto/Documents/Development/GRP_workspace/OtherProjects/bittube-coin-gui-wallet
-    //QString file = QDir::currentPath() + "/build/release/bin/miner/bittube-miner.exe";
-    //QString file = QDir::currentPath() + "\miner\ipbc-miner.exe";
-    //process->start(file);
-
-    // MinerManager theMiner(&app);
-
-    //----------------------------------
-
-    app.setApplicationName("bittube-wallet-gui");
-    app.setOrganizationDomain("bit.tube");
-    app.setOrganizationName("bittube");
+    app.setApplicationName("bittube-core");
+    app.setOrganizationDomain("bittubeapp.com");
+    app.setOrganizationName("ipbc-dev");
 
 #if defined(Q_OS_LINUX)
     if (isDesktop) app.setWindowIcon(QIcon(":/images/appicon-white.ico"));
@@ -173,10 +157,24 @@ int main(int argc, char *argv[])
     qreal physicalDpi = QGuiApplication::primaryScreen()->physicalDotsPerInch();
     qreal calculated_ratio = physicalDpi/ref_dpi;
 
-    qWarning().nospace() << "Qt:" << QT_VERSION_STR << " | screen: " << rect.width()
-                         << "x" << rect.height() << " - dpi: " << dpi << " - ratio:"
-                         << calculated_ratio;
+    QString GUI_VERSION = "-";
+    QFile f(":/version.js");
+    if(!f.open(QFile::ReadOnly)) {
+        qWarning() << "Could not read qrc:///version.js";
+    } else {
+        QByteArray contents = f.readAll();
+        f.close();
 
+        QRegularExpression re("var GUI_VERSION = \"(.*)\"");
+        QRegularExpressionMatch version_match = re.match(contents);
+        if (version_match.hasMatch()) {
+            GUI_VERSION = version_match.captured(1);  // "v0.13.0.3"
+        }
+    }
+
+    qWarning().nospace().noquote() << "Qt:" << QT_VERSION_STR << " GUI:" << GUI_VERSION
+                                   << " | screen: " << rect.width() << "x" << rect.height()
+                                   << " - dpi: " << dpi << " - ratio:" << calculated_ratio;
 
     // registering types for QML
     qmlRegisterType<clipboardAdapter>("moneroComponents.Clipboard", 1, 0, "Clipboard");
@@ -224,6 +222,12 @@ int main(int argc, char *argv[])
 
     qmlRegisterUncreatableType<Subaddress>("moneroComponents.Subaddress", 1, 0, "Subaddress",
                                                         "Subaddress can't be instantiated directly");
+
+    qmlRegisterUncreatableType<SubaddressAccountModel>("moneroComponents.SubaddressAccountModel", 1, 0, "SubaddressAccountModel",
+                                                        "SubaddressAccountModel can't be instantiated directly");
+
+    qmlRegisterUncreatableType<SubaddressAccount>("moneroComponents.SubaddressAccount", 1, 0, "SubaddressAccount",
+                                                        "SubaddressAccount can't be instantiated directly");
 
     qRegisterMetaType<PendingTransaction::Priority>();
     qRegisterMetaType<TransactionInfo::Direction>();
@@ -285,6 +289,11 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("scaleRatio", 1);
 #endif
 
+#ifndef Q_OS_IOS
+    const QString desktopFolder = QStandardPaths::writableLocation(QStandardPaths::DesktopLocation);
+    if (!desktopFolder.isEmpty())
+        engine.rootContext()->setContextProperty("desktopFolder", desktopFolder);
+#endif
 
     if (!moneroAccountsRootDir.empty())
     {
@@ -302,6 +311,7 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty("defaultAccountName", accountName);
     engine.rootContext()->setContextProperty("applicationDirectory", QApplication::applicationDirPath());
+    engine.rootContext()->setContextProperty("idealThreadCount", QThread::idealThreadCount());
 
     bool builtWithScanner = false;
 #ifdef WITH_SCANNER
@@ -340,6 +350,6 @@ int main(int argc, char *argv[])
     QObject::connect(eventFilter, SIGNAL(sequenceReleased(QVariant,QVariant)), rootObject, SLOT(sequenceReleased(QVariant,QVariant)));
     QObject::connect(eventFilter, SIGNAL(mousePressed(QVariant,QVariant,QVariant)), rootObject, SLOT(mousePressed(QVariant,QVariant,QVariant)));
     QObject::connect(eventFilter, SIGNAL(mouseReleased(QVariant,QVariant,QVariant)), rootObject, SLOT(mouseReleased(QVariant,QVariant,QVariant)));
-
+    QObject::connect(eventFilter, SIGNAL(userActivity()), rootObject, SLOT(userActivity()));
     return app.exec();
 }
