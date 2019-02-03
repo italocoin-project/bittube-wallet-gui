@@ -68,7 +68,7 @@ ColumnLayout {
     property int labelFontSize: 16 * scaleRatio
     property bool labelButtonVisible: false
 
-    property string fontColor: "white"
+    property string fontColor: "#A9A9A9"
     property bool fontBold: false
     property int fontSize: 16 * scaleRatio
 

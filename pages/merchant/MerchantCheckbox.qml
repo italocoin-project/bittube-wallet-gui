@@ -34,7 +34,7 @@ RowLayout {
         id: content
         font.pixelSize: 14 * scaleRatio
         font.bold: false
-        color: "white"
+        color: "#A9A9A9"
         text: ""
     }
 

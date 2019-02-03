@@ -37,5 +37,5 @@ import "components"
 Rectangle {
     id: root
     width: 330
-    color: "#FFFFFF"
+    color: "#A9A9A9"
 }

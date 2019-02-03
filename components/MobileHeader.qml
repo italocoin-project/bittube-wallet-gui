@@ -12,7 +12,7 @@ Rectangle {
     anchors.rightMargin: 1
     Layout.fillWidth: true
     Layout.preferredHeight: 64 * scaleRatio
-    color: "#FFFFFF"
+    color: "#A9A9A9"
 
     Image {
         id: logo

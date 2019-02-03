@@ -1,5 +1,4 @@
 // Copyright (c) 2014-2018, The Monero Project
-// Copyright (c) 2018, The BitTube Project
 // 
 // All rights reserved.
 // 
@@ -199,7 +198,7 @@ Rectangle {
                     anchors.top: parent.top
                     anchors.topMargin: 76
                     font.family: "Arial"
-                    color: "#FFFFFF"
+                    color: "#A9A9A9"
                     text: "N/A"
                     // dynamically adjust text size
                     font.pixelSize: {
@@ -237,7 +236,7 @@ Rectangle {
                     anchors.top: parent.top
                     anchors.topMargin: 126
                     font.family: "Arial"
-                    color: "#FFFFFF"
+                    color: "#A9A9A9"
                     text: "N/A"
                     // dynamically adjust text size
                     font.pixelSize: {
@@ -355,7 +354,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
 
@@ -366,7 +365,7 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("Send") + translationManager.emptyString
                 symbol: qsTr("S") + translationManager.emptyString
-                dotColor: "#86af49"
+                dotColor: "#FF6C3C"
                 onClicked: {
                     parent.previousButton.checked = false
                     parent.previousButton = transferButton
@@ -379,7 +378,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
 
@@ -391,7 +390,7 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("Address book") + translationManager.emptyString
                 symbol: qsTr("B") + translationManager.emptyString
-                dotColor: "#86af49"
+                dotColor: "#FF4F41"
                 under: transferButton
                 onClicked: {
                     parent.previousButton.checked = false
@@ -405,7 +404,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
 
@@ -416,7 +415,7 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("Receive") + translationManager.emptyString
                 symbol: qsTr("R") + translationManager.emptyString
-                dotColor: "#86af49"
+                dotColor: "#AAFFBB"
                 onClicked: {
                     parent.previousButton.checked = false
                     parent.previousButton = receiveButton
@@ -428,7 +427,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
 
@@ -466,7 +465,7 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("History") + translationManager.emptyString
                 symbol: qsTr("H") + translationManager.emptyString
-                dotColor: "#86af49"
+                dotColor: "#6B0072"
                 onClicked: {
                     parent.previousButton.checked = false
                     parent.previousButton = historyButton
@@ -478,7 +477,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
 
@@ -487,10 +486,33 @@ Rectangle {
                 id: advancedButton
                 anchors.left: parent.left
                 anchors.right: parent.right
+                text: qsTr("Advanced") + translationManager.emptyString
+                symbol: qsTr("D") + translationManager.emptyString
+                dotColor: "#FFD781"
+                onClicked: {
+                    parent.previousButton.checked = false
+                    parent.previousButton = advancedButton
+                }
+            }
+            Rectangle {
+                visible: advancedButton.present
+                anchors.left: parent.left
+                anchors.right: parent.right
+                anchors.leftMargin: 16
+                color: "#313131"
+                height: 1
+            }
+
+            // ------------- Mining tab ---------------
+            MoneroComponents.MenuButton {
+                id: miningButton
+                visible: !isAndroid && !isIOS
+                anchors.left: parent.left
+                anchors.right: parent.right
                 text: qsTr("Mining") + translationManager.emptyString
                 symbol: qsTr("M") + translationManager.emptyString
-                dotColor: "#86af49"
-                // under: advancedButton
+                dotColor: "#FFD781"
+                under: advancedButton
                 onClicked: {
                     parent.previousButton.checked = false
                     parent.previousButton = miningButton
@@ -503,33 +525,9 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: miningButton.checked || settingsButton.checked ? "#1C1C1C" : "#313131"
                 height: 1
             }
-
-            // ------------- Mining tab ---------------
-            MoneroComponents.MenuButton {
-                id: miningButton
-                visible: !isAndroid && !isIOS
-                anchors.left: parent.left
-                anchors.right: parent.right
-                text: qsTr("Advanced") + translationManager.emptyString
-                symbol: qsTr("D") + translationManager.emptyString
-                dotColor: "#86af49"
-                onClicked: {
-                    parent.previousButton.checked = false
-                    parent.previousButton = advancedButton
-                }
-            }
-            Rectangle {
-                visible: advancedButton.present
-                anchors.left: parent.left
-                anchors.right: parent.right
-                anchors.leftMargin: 16
-                color: "#d2d2d2"
-                height: 1
-            }
-
             // ------------- TxKey tab ---------------
             MoneroComponents.MenuButton {
                 id: txkeyButton
@@ -537,7 +535,7 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("Prove/check") + translationManager.emptyString
                 symbol: qsTr("K") + translationManager.emptyString
-                dotColor: "#86af49"
+                dotColor: "#FFD781"
                 under: advancedButton
                 onClicked: {
                     parent.previousButton.checked = false
@@ -550,18 +548,17 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
-
             // ------------- Shared RingDB tab ---------------
             MoneroComponents.MenuButton {
                 id: sharedringdbButton
                 anchors.left: parent.left
                 anchors.right: parent.right
                 text: qsTr("Shared RingDB") + translationManager.emptyString
-                symbol: qsTr("A") + translationManager.emptyString
-                dotColor: "#86af49"
+                symbol: qsTr("G") + translationManager.emptyString
+                dotColor: "#FFD781"
                 under: advancedButton
                 onClicked: {
                     parent.previousButton.checked = false
@@ -574,9 +571,10 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
+
 
             // ------------- Sign/verify tab ---------------
             MoneroComponents.MenuButton {
@@ -585,7 +583,7 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("Sign/verify") + translationManager.emptyString
                 symbol: qsTr("I") + translationManager.emptyString
-                dotColor: "#86af49"
+                dotColor: "#FFD781"
                 under: advancedButton
                 onClicked: {
                     parent.previousButton.checked = false
@@ -598,7 +596,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
             // ------------- Settings tab ---------------
@@ -608,8 +606,7 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("Settings") + translationManager.emptyString
                 symbol: qsTr("E") + translationManager.emptyString
-                dotColor: "#86af49"
-                under: advancedButton
+                dotColor: "#36B25C"
                 onClicked: {
                     parent.previousButton.checked = false
                     parent.previousButton = settingsButton
@@ -621,7 +618,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
             // ------------- Sign/verify tab ---------------
@@ -631,8 +628,8 @@ Rectangle {
                 anchors.right: parent.right
                 text: qsTr("Seed & Keys") + translationManager.emptyString
                 symbol: qsTr("Y") + translationManager.emptyString
-                dotColor: "#86af49"
-                under: advancedButton
+                dotColor: "#FFD781"
+                under: settingsButton
                 onClicked: {
                     parent.previousButton.checked = false
                     parent.previousButton = keysButton
@@ -644,7 +641,7 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 anchors.leftMargin: 16
-                color: "#d2d2d2"
+                color: "#313131"
                 height: 1
             }
 
@@ -660,7 +657,7 @@ Rectangle {
             anchors.rightMargin: 0
             anchors.bottom: networkStatus.top;
             height: 10 * scaleRatio
-            color: "#eeeeee"
+            color: "transparent"
         }
 
         MoneroComponents.NetworkStatusItem {
@@ -672,7 +669,6 @@ Rectangle {
             anchors.bottom: (progressBar.visible)? progressBar.top : parent.bottom;
             connected: Wallet.ConnectionStatus_Disconnected
             height: 48 * scaleRatio
-            color: "#eeeeee"
         }
 
         MoneroComponents.ProgressBar {
@@ -683,7 +679,6 @@ Rectangle {
             height: 48 * scaleRatio
             syncType: qsTr("Wallet")
             visible: networkStatus.connected
-            color: "#eeeeee"
         }
 
         MoneroComponents.ProgressBar {
@@ -694,7 +689,6 @@ Rectangle {
             syncType: qsTr("Daemon")
             visible: networkStatus.connected
             height: 62 * scaleRatio
-            color: "#eeeeee"
         }
     } // menuRect
 

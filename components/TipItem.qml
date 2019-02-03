@@ -66,7 +66,7 @@ Window {
             lineHeight: 0.7
             font.family: "Arial"
             font.pixelSize: 12
-            color: "#FFFFFF"
+            color: "#A9A9A9"
         }
     }
 }

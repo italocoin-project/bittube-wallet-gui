@@ -197,7 +197,7 @@ Rectangle {
 
                             MoneroComponents.Label {
                                 id: idLabel
-                                color: index === appWindow.current_subaddress_account_table_index ? "white" : "#757575"
+                                color: index === appWindow.current_subaddress_account_table_index ? "#A9A9A9" : "#757575"
                                 anchors.verticalCenter: parent.verticalCenter
                                 anchors.left: parent.left
                                 anchors.leftMargin: 6 * scaleRatio
@@ -221,7 +221,7 @@ Rectangle {
 
                             MoneroComponents.Label {
                                 id: addressLabel
-                                color: "white"
+                                color: "#A9A9A9"
                                 anchors.verticalCenter: parent.verticalCenter
                                 anchors.left: balanceLabel.left
                                 anchors.leftMargin: (mainLayout.width < 510 ? -70 : -125) * scaleRatio
@@ -232,7 +232,7 @@ Rectangle {
 
                             MoneroComponents.Label {
                                 id: balanceLabel
-                                color: "white"
+                                color: "#A9A9A9"
                                 anchors.verticalCenter: parent.verticalCenter
                                 anchors.left: parent.right
                                 anchors.leftMargin: (mainLayout.width < 510 ? -120 : -180) * scaleRatio

@@ -93,7 +93,7 @@ Rectangle {
                 addressValidation: false
                 readOnly: true
                 wrapMode: Text.WordWrap
-                fontColor: "white"
+                fontColor: "#A9A9A9"
             }
         }
 

@@ -1,5 +1,5 @@
 #!/bin/bash
-BITTUBE_URL=https://github.com/bittube-project/bittube.git
+BITTUBE_URL=https://github.com/ipbc-dev/bittube.git
 BITTUBE_BRANCH=master
 
 pushd $(pwd)

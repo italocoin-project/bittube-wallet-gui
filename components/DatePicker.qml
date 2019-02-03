@@ -310,7 +310,7 @@ Item {
                         text: styleData.date.getDate()
                         color: {
                             if(!styleData.visibleMonth) return "#DBDBDB"
-                            if(dayArea.pressed) return "#FFFFFF"
+                            if(dayArea.pressed) return "#A9A9A9"
                             if(styleData.today) return "#FF6C3B"
                             return "#4A4848"
                         }

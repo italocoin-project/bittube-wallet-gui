@@ -34,7 +34,7 @@ import QtQuick.Layouts 1.1
 
 Rectangle {
     id: root
-    color: "white"
+    color: "#A9A9A9"
     visible: false
     z:11
     property alias messageText: messageTitle.text

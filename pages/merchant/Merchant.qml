@@ -199,7 +199,7 @@ Item {
 
             Rectangle {
                 id: qrImg
-                color: "white"
+                color: "#A9A9A9"
 
                 anchors.right: parent.right
                 anchors.top: parent.top
@@ -272,7 +272,7 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 12 * scaleRatio
                     font.bold: false
-                    color: "white"
+                    color: "#A9A9A9"
                     text: "<style type='text/css'>a {text-decoration: none; color: #FF6C3C; font-size: 12px;}</style>Currently selected address: " + addressLabel + " <a href='#'>(Change)</a>"
                     textFormat: Text.RichText
 
@@ -296,7 +296,7 @@ Item {
                     anchors.horizontalCenter: parent.horizontalCenter
                     font.pixelSize: 12 * scaleRatio
                     font.bold: false
-                    color: "white"
+                    color: "#A9A9A9"
                     text: qsTr("(right-click, save as)")
                 }
             }
@@ -449,7 +449,7 @@ Item {
                     Text {
                         font.pixelSize: 14 * scaleRatio
                         font.bold: false
-                        color: "white"
+                        color: "#A9A9A9"
                         text: qsTr("Amount to receive") + " (XMR)"
                     }
 
@@ -474,7 +474,7 @@ Item {
                             selectByMouse: true
                             color: "#424242"
                             selectionColor: "#3f3fe3"
-                            selectedTextColor: "white"
+                            selectedTextColor: "#A9A9A9"
 
                             background: Rectangle {
                                 color: "transparent"
@@ -500,7 +500,7 @@ Item {
                         visible: false
                         font.pixelSize: 14 * scaleRatio
                         font.bold: false
-                        color: "white"
+                        color: "#A9A9A9"
                         text: qsTr("Amount to receive") + " (USD)"
                         opacity: 0.2
                     }
@@ -539,7 +539,7 @@ Item {
                     id: content
                     font.pixelSize: 14 * scaleRatio
                     font.bold: false
-                    color: "white"
+                    color: "#A9A9A9"
                     text: qsTr("Leave this page")
 
                     MouseArea {

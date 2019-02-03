@@ -129,7 +129,7 @@ Rectangle {
         anchors.verticalCenter: parent.verticalCenter
         font.pixelSize: 12 * scaleRatio
         font.bold: true
-        color: button.checked || buttonArea.containsMouse ? "#FFFFFF" : dot.color
+        color: button.checked || buttonArea.containsMouse ? "#A9A9A9" : dot.color
         visible: appWindow.ctrlPressed
     }
 

@@ -956,7 +956,7 @@ ApplicationWindow {
     visible: true
 //    width: screenWidth //rightPanelExpanded ? 1269 : 1269 - 300
 //    height: 900 //300//maxWindowHeight;
-    color: "#FFFFFF"
+    color: "#A9A9A9"
     flags: persistentSettings.customDecorations ? Windows.flagsCustomDecorations : Windows.flags
     onWidthChanged: x -= 0
 
@@ -1705,7 +1705,7 @@ ApplicationWindow {
                 lineHeight: 0.7
                 font.family: "Arial"
                 font.pixelSize: 12 * scaleRatio
-                color: "#FFFFFF"
+                color: "#A9A9A9"
             }
         }
 
@@ -1746,7 +1746,7 @@ ApplicationWindow {
             anchors.fill: parent
             anchors.margins: 10 * scaleRatio
             font.pixelSize: 14 * scaleRatio
-            color: "white"
+            color: "#A9A9A9"
         }
     }
 

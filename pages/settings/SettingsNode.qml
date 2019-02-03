@@ -73,7 +73,7 @@ Rectangle{
                 Layout.fillHeight: true
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                color: "white"
+                color: "#A9A9A9"
                 width: 2
             }
 
@@ -107,7 +107,7 @@ Rectangle{
                     anchors.left: localNodeIcon.right
                     anchors.leftMargin: 14 * scaleRatio
                     anchors.top: parent.top
-                    color: "white"
+                    color: "#A9A9A9"
                     font.bold: true
                     font.family: MoneroComponents.Style.fontRegular.name
                     font.pixelSize: 16 * scaleRatio
@@ -173,7 +173,7 @@ Rectangle{
                 Layout.fillHeight: true
                 anchors.top: parent.top
                 anchors.bottom: parent.bottom
-                color: "white"
+                color: "#A9A9A9"
                 width: 2
             }
 
@@ -207,7 +207,7 @@ Rectangle{
                     anchors.left: remoteNodeIcon.right
                     anchors.leftMargin: 14 * scaleRatio
                     anchors.top: parent.top
-                    color: "white"
+                    color: "#A9A9A9"
                     font.bold: true
                     font.family: MoneroComponents.Style.fontRegular.name
                     font.pixelSize: 16 * scaleRatio
@@ -284,7 +284,7 @@ Rectangle{
                 Layout.minimumWidth: 100 * scaleRatio
 
                 lineEditBackgroundColor: "transparent"
-                lineEditFontColor: "white"
+                lineEditFontColor: "#A9A9A9"
                 lineEditFontBold: false
                 lineEditBorderColor: Qt.rgba(255, 255, 255, 0.35)
                 labelFontSize: 14 * scaleRatio
@@ -422,7 +422,7 @@ Rectangle{
                         Layout.bottomMargin: 20 * scaleRatio
     
                         lineEditBackgroundColor: "transparent"
-                        lineEditFontColor: "white"
+                        lineEditFontColor: "#A9A9A9"
                         lineEditBorderColor: MoneroComponents.Style.inputBorderColorActive
                         placeholderFontSize: 15 * scaleRatio
                         labelFontSize: 14 * scaleRatio

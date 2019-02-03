@@ -67,7 +67,7 @@ Rectangle {
             font.family: MoneroComponents.Style.fontMedium.name
             font.pixelSize: 13 * scaleRatio
             font.bold: true
-            color: "white"
+            color: "#A9A9A9"
             text: qsTr("Synchronizing %1").arg(syncType) + translationManager.emptyString
             height: 18 * scaleRatio
         }

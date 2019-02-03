@@ -251,7 +251,7 @@ ListView {
                         anchors.fill: parent
                         cursorShape: Qt.PointingHandCursor
                         onEntered: {
-                            toLabel.color = "white";
+                            toLabel.color = "#A9A9A9";
                         }
                         onExited: {
                             toLabel.color = "#BBBBBB";

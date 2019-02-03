@@ -104,7 +104,7 @@ Item {
             anchors.horizontalCenterOffset: 1
             height: 23
             width: 1
-            color: dropdown.expanded || dropArea.height > 0 ? "#FFFFFF" : "#DBDBDB"
+            color: dropdown.expanded || dropArea.height > 0 ? "#A9A9A9" : "#DBDBDB"
         }
 
         Image {

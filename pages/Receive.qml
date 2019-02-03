@@ -278,7 +278,7 @@ Rectangle {
 
             Rectangle {
                 id: qrContainer
-                color: "white"
+                color: "#A9A9A9"
                 Layout.fillWidth: true
                 Layout.maximumWidth: parent.qrSize
                 Layout.preferredHeight: width

@@ -39,7 +39,7 @@ Item {
     property string shadowReleasedColor
     property string pressedColor
     property string releasedColor
-    property string textColor: "#FFFFFF"
+    property string textColor: "#A9A9A9"
     property alias currentIndex: columnid.currentIndex
     property bool expanded: false
     property int dropdownHeight: 42
@@ -193,7 +193,7 @@ Item {
                         font.family: MoneroComponents.Style.fontRegular.name
                         font.bold: true
                         font.pixelSize: fontItemSize
-                        color: itemArea.containsMouse || index === columnid.currentIndex || itemArea.containsMouse ? "#FA6800" : "#FFFFFF"
+                        color: itemArea.containsMouse || index === columnid.currentIndex || itemArea.containsMouse ? "#FA6800" : "#A9A9A9"
                         text: qsTr(column1) + translationManager.emptyString
                     }
 

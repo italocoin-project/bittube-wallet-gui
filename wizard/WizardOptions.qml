@@ -113,7 +113,7 @@ ColumnLayout {
                 Layout.preferredHeight: page.buttonSize
                 Layout.preferredWidth: page.buttonSize
                 radius: page.buttonSize
-                color: createWalletArea.containsMouse ? "#DBDBDB" : "#FFFFFF"
+                color: createWalletArea.containsMouse ? "#DBDBDB" : "#A9A9A9"
 
 
                 Image {
@@ -159,7 +159,7 @@ ColumnLayout {
                 Layout.preferredHeight: page.buttonSize
                 Layout.preferredWidth:  page.buttonSize
                 radius: page.buttonSize
-                color: recoverWalletArea.containsMouse ? "#DBDBDB" : "#FFFFFF"
+                color: recoverWalletArea.containsMouse ? "#DBDBDB" : "#A9A9A9"
 
                 Image {
                     width: page.buttonImageSize
@@ -203,7 +203,7 @@ ColumnLayout {
                 Layout.preferredHeight: page.buttonSize
                 Layout.preferredWidth:  page.buttonSize
                 radius: page.buttonSize
-                color: openWalletArea.containsMouse ? "#DBDBDB" : "#FFFFFF"
+                color: openWalletArea.containsMouse ? "#DBDBDB" : "#A9A9A9"
 
                 Image {
                     width: page.buttonImageSize
@@ -246,7 +246,7 @@ ColumnLayout {
                 Layout.preferredHeight: page.buttonSize
                 Layout.preferredWidth: page.buttonSize
                 radius: page.buttonSize
-                color: createWalletFromDeviceArea.containsMouse ? "#DBDBDB" : "#FFFFFF"
+                color: createWalletFromDeviceArea.containsMouse ? "#DBDBDB" : "#A9A9A9"
 
 
                 Image {

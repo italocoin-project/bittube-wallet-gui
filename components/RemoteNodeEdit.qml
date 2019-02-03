@@ -52,7 +52,7 @@ GridLayout {
     property real placeholderOpacity: 0.35
 
     property string lineEditBorderColor: Qt.rgba(0, 0, 0, 0.15)
-    property string lineEditBackgroundColor: "white"
+    property string lineEditBackgroundColor: "#A9A9A9"
     property string lineEditFontColor: "black"
     property int lineEditFontSize: 18 * scaleRatio
     property int labelFontSize: 16 * scaleRatio

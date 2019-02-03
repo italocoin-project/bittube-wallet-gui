@@ -66,7 +66,7 @@ ColumnLayout {
     signal openWalletFromFileClicked()
 //    border.color: "#DBDBDB"
     // border.width: 1
-    // color: "#FFFFFF"
+    // color: "#A9A9A9"
 
     function restart(){
         wizard.currentPage = 0;
